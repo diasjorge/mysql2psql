@@ -128,6 +128,9 @@ EOF
     reader.paginated_read(table, 1000) do |row, counter|
       line = []
       process_row(table, row)
+      if row[-1].empty?
+        row[-1] = '\t'
+      end
       @f << row.join("\t") + "\n"
     end
     @f << "\\.\n\n"
