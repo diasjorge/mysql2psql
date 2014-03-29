@@ -43,8 +43,10 @@ class Mysql2psql
           "varchar"
         when /char/
           "char"
-        when /(float|decimal)/
+        when "decimal"
           "decimal"
+        when "float"
+          "float"
         when /double/
            "double precision"
         else
