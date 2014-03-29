@@ -61,6 +61,7 @@ class Mysql2psql
         fields = []
         @reader.mysql.query("EXPLAIN `#{name}`") do |res|
           while field = res.fetch_row do
+            length = nil
             length = field[1][/\((\d+)\)/, 1] if field[1] =~ /\((\d+)\)/
             length = field[1][/\((\d+),(\d+)\)/, 1] if field[1] =~ /\((\d+),(\d+)\)/
             desc = {
